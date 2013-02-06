@@ -1,3 +1,12 @@
+/*
+ * project	Java2Week1
+ * 
+ * package	com.rbarnes.lib
+ * 
+ * @author	Ronaldo Barnes
+ * 
+ * date		Feb 5, 2013
+ */
 package com.rbarnes.lib;
 
 import java.io.BufferedInputStream;
@@ -122,6 +131,7 @@ public class FileInterface {
 				content = (Object)ois.readObject();
 			}catch(ClassNotFoundException e){
 				Log.e("READ ERROR","INVALD JAVA OBJECT FILE");
+				return null;
 			}
 			ois.close();
 			fis.close();
