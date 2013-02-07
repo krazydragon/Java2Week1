@@ -24,15 +24,15 @@ public final class R {
     }
     public static final class id {
         public static final int InputFormLayout=0x7f080001;
-        public static final int LinearLayout1=0x7f08001d;
+        public static final int LinearLayout1=0x7f080012;
         public static final int RelativeLayout1=0x7f080011;
         public static final int addressLabel=0x7f080015;
         public static final int addressValue=0x7f080019;
         public static final int cakeButton=0x7f08000a;
-        public static final int callButton=0x7f08001e;
+        public static final int callButton=0x7f08001d;
         public static final int candyButton=0x7f08000b;
         public static final int cityLabel=0x7f080014;
-        public static final int cityValue=0x7f08001c;
+        public static final int cityValue=0x7f08001a;
         public static final int cookieButton=0x7f080008;
         public static final int dessert_view=0x7f08000c;
         public static final int imageView1=0x7f080010;
@@ -42,14 +42,12 @@ public final class R {
         public static final int introView=0x7f080000;
         public static final int linearLayout1=0x7f080006;
         public static final int linearLayout2=0x7f08000d;
-        public static final int mapButton=0x7f08001f;
+        public static final int mapButton=0x7f08001c;
         public static final int mapView=0x7f080004;
-        public static final int menu_settings=0x7f080020;
+        public static final int menu_settings=0x7f08001e;
         public static final int nothingView=0x7f08000f;
-        public static final int phoneLabel=0x7f080013;
-        public static final int phoneValue=0x7f08001a;
         public static final int pieButton=0x7f080009;
-        public static final int resultGridLayout=0x7f080012;
+        public static final int resultGridLayout=0x7f080013;
         public static final int stateLabel=0x7f080016;
         public static final int stateValue=0x7f08001b;
         public static final int textView1=0x7f080005;

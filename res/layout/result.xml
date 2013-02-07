@@ -6,22 +6,44 @@
     android:columnCount="2"
     android:orientation="horizontal" >
 
+    <LinearLayout
+        android:id="@+id/LinearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center|center_vertical"
+            android:layout_weight="1"
+            android:text="Medium Text"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:src="@drawable/cookies" />
+    </LinearLayout>
+
     <GridLayout
         android:id="@+id/resultGridLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginLeft="25dp" >
-
-        <TextView
-            android:id="@+id/phoneLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:layout_gravity="left|center_vertical"
-            android:layout_marginTop="35dp"
-            android:layout_row="8"
-            android:text="@string/phone_label" />
+        android:layout_height="236dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="64dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="75dp"
+        android:layout_weight="1"
+        android:alignmentMode="alignBounds"
+        android:columnCount="2" >
 
         <TextView
             android:id="@+id/cityLabel"
@@ -83,24 +105,6 @@
             android:text="@string/blank_text" />
 
         <TextView
-            android:id="@+id/phoneValue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_column="1"
-            android:layout_gravity="left|bottom"
-            android:layout_row="8"
-            android:text="@string/blank_text" />
-
-        <TextView
-            android:id="@+id/stateValue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_column="1"
-            android:layout_gravity="left|bottom"
-            android:layout_row="5"
-            android:text="@string/blank_text" />
-
-        <TextView
             android:id="@+id/cityValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -108,31 +112,38 @@
             android:layout_gravity="left|bottom"
             android:layout_row="4"
             android:text="@string/blank_text" />
+
+        <TextView
+            android:id="@+id/stateValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_gravity="left|top"
+            android:layout_row="5"
+            android:text="@string/blank_text" />
+
     </GridLayout>
 
     <LinearLayout
-        android:id="@+id/LinearLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:orientation="vertical" >
+        android:layout_alignParentRight="true" >
+
+        <Button
+            android:id="@+id/mapButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.29"
+            android:text="Button" />
+
+        <Button
+            android:id="@+id/callButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.31"
+            android:text="Button" />
     </LinearLayout>
-
-    <Button
-        android:id="@+id/callButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/resultGridLayout"
-        android:text="Button" />
-
-    <Button
-        android:id="@+id/mapButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/callButton"
-        android:text="Button" />
 
 </RelativeLayout>
