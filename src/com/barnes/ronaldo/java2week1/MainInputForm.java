@@ -30,6 +30,7 @@ import com.rbarnes.other.Dessert;
 
 
 
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.annotation.SuppressLint;
@@ -151,18 +152,18 @@ public class MainInputForm extends Activity implements OnClickListener {
 		TextView tempCity = (TextView)findViewById(R.id.cityValue);
 		TextView tempState = (TextView)findViewById(R.id.stateValue);
 		TextView tempPhone = (TextView)findViewById(R.id.phoneValue);
-		tempTitle.setText(_titleStr);
-		tempAddress.setText(_addressStr);
-		tempCity.setText(_cityStr);
-		tempState.setText(_stateStr);
-		tempPhone.setText(_phoneStr);
+		//tempTitle.setText(_titleStr);
+		//tempAddress.setText(_addressStr);
+		//tempCity.setText(_cityStr);
+		//tempState.setText(_stateStr);
+		//tempPhone.setText(_phoneStr);
 		
 	}
 	//
 	private Boolean checkStorage(){
 		//set old information
 		if(_oldLocation != null){
-			_resulutIntent.putExtra("hashMap", _oldLocation);
+			displayResults();
 			startActivity(_resulutIntent);
 			return true;
 		}else{
@@ -240,6 +241,7 @@ public class MainInputForm extends Activity implements OnClickListener {
 						FileInterface.storeObjectFile(_context, "oldLocation", _oldLocation, false);
 						//Show data
 						//Add Location Display
+						displayResults();
 						checkStorage();
 					}else{
 						_toast = Toast.makeText(_context, "Something went wrong" , Toast.LENGTH_SHORT);

@@ -120,19 +120,19 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/button2"
-        android:text="Button" />
-
-    <Button
-        android:id="@+id/button2"
+        android:id="@+id/callButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/resultGridLayout"
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/mapButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/callButton"
         android:text="Button" />
 
 </RelativeLayout>
