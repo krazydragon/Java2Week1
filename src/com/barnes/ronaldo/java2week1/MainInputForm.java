@@ -14,6 +14,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.zip.Checksum;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -70,6 +71,7 @@ public class MainInputForm extends Activity implements OnClickListener {
 	Button _inputButton;
 	int _buttonId;
 	TextView _introText;
+	Intent _resulutIntent;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -78,33 +80,34 @@ public class MainInputForm extends Activity implements OnClickListener {
 		setContentView(R.layout.activity_main_input_form);
 		 _inputLayout = (LinearLayout)findViewById(R.id.InputFormLayout);
 		_context = this;
+		_resulutIntent = new Intent(this, ResultOutput.class);
 		_resultView = (GridLayout)findViewById(R.id.resultGridLayout);
-		_oldLocation = getOldLocation();
+		_oldLocation = new HashMap<String, String>();
 		_inputButton = (Button)findViewById(R.id.inputButton);
 		_introText =(TextView)findViewById(R.id.introView);
-		/*_connected = WebInterface.getConnectionStatus(_context);
+		_connected = WebInterface.getConnectionStatus(_context);
 		//Check network connection and local storage
 		String tmpToast;
 		if(_connected){
 			//show user connected message
-			if(checkStorage()){
+			/*if(checkStorage()){
 				tmpToast = (String)WebInterface.getConnectionType(_context) + " is connected and saved file was found!";
 			}else{
 				tmpToast = (String)WebInterface.getConnectionType(_context) + " is connected and no files found!";;
 			}
 			_toast = Toast.makeText(_context, tmpToast, Toast.LENGTH_LONG);
 			_toast.show();
-			_buttonId = 0;
+			_buttonId = 0;*/
 		}else{
 			if(checkStorage()){
 				//show old information
 				tmpToast = "Loading saved infomation no network connection found!";
-				displayResults();
+				/*displayResults();
 				_introText.setText(R.string.old_text);
 				_inputButton.setText(R.string.input_button_text3);
 				_resultView.setVisibility(View.VISIBLE);
 				_inputLayout.setVisibility(View.INVISIBLE);
-				_buttonId = 2;
+				_buttonId = 2;*/
 			}else{
 				//Show no information tell user to exit application
 				LinearLayout noNetwork = (LinearLayout)findViewById(R.id.nothingView);
@@ -119,7 +122,7 @@ public class MainInputForm extends Activity implements OnClickListener {
 			_toast = Toast.makeText(_context, tmpToast, Toast.LENGTH_LONG);
 			_toast.show();
 		}
-		*///Detect form elements
+		//Detect form elements
 		_inputButton = (Button)findViewById(R.id.inputButton);
 		Button cookieButton = (Button)findViewById(R.id.cookieButton);
 		Button pieButton = (Button)findViewById(R.id.pieButton);
@@ -159,20 +162,12 @@ public class MainInputForm extends Activity implements OnClickListener {
 	private Boolean checkStorage(){
 		//set old information
 		if(_oldLocation != null){
-			_titleStr = _oldLocation.get("Title").toString();
-			_addressStr = _oldLocation.get("Address").toString();
-			_cityStr = _oldLocation.get("City").toString();
-			_stateStr = _oldLocation.get("State").toString();
-			_phoneStr = _oldLocation.get("Phone").toString();
+			_resulutIntent.putExtra("hashMap", _oldLocation);
+			startActivity(_resulutIntent);
 			return true;
 		}else{
 			//get ready to save new information
 			_oldLocation = new HashMap<String, String>();
-			_titleStr = "";
-			_addressStr = "";
-			_cityStr = "";
-			_stateStr = "";
-			_phoneStr = "";
 			return false;
 		}
 	}
@@ -229,8 +224,8 @@ public class MainInputForm extends Activity implements OnClickListener {
 				}else{
 					JSONObject location = locations.getJSONObject("Result");
 					if(location != null){
-						_toast = Toast.makeText(_context, "Saving File.", Toast.LENGTH_SHORT);
-						_toast.show();
+					//	_toast = Toast.makeText(_context, "Saving File.", Toast.LENGTH_SHORT);
+						//_toast.show();
 						_titleStr = location.getString("Title");
 						_addressStr = location.getString("Address");
 						_cityStr = location.getString("City");
@@ -245,9 +240,7 @@ public class MainInputForm extends Activity implements OnClickListener {
 						FileInterface.storeObjectFile(_context, "oldLocation", _oldLocation, false);
 						//Show data
 						//Add Location Display
-						displayResults();
-						_resultView.setVisibility(View.VISIBLE);
-						_inputLayout.setVisibility(View.INVISIBLE);
+						checkStorage();
 					}else{
 						_toast = Toast.makeText(_context, "Something went wrong" , Toast.LENGTH_SHORT);
 						_toast.show();
@@ -276,11 +269,10 @@ public class MainInputForm extends Activity implements OnClickListener {
 				Spinner inputSpinner = (Spinner) findViewById(R.id.inputSpinner);
 				String buttonText = (String) selectedButton.getText();
 				String spinnerText = String.valueOf(inputSpinner.getSelectedItem());
-				//getLocations(buttonText,spinnerText);
+				getLocations(buttonText,spinnerText);
 				//_buttonId = 1;
-				//_inputButton.setText(R.string.input_button_text2);
-				Intent intent = new Intent(this, ResultOutput.class);
-				startActivity(intent);
+				_inputButton.setText(R.string.input_button_text2);
+				
 				break;
 			case 1:
 				//go back to input view

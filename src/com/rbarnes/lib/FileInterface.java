@@ -131,7 +131,6 @@ public class FileInterface {
 				content = (Object)ois.readObject();
 			}catch(ClassNotFoundException e){
 				Log.e("READ ERROR","INVALD JAVA OBJECT FILE");
-				return null;
 			}
 			ois.close();
 			fis.close();
@@ -147,3 +146,4 @@ public class FileInterface {
 		return content;
 	}
 }
+
