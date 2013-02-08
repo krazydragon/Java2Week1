@@ -73,6 +73,7 @@ public class MainInputForm extends Activity implements OnClickListener {
 		 _inputLayout = (LinearLayout)findViewById(R.id.InputFormLayout);
 		_context = this;
 		_resulutIntent = new Intent(this, ResultOutput.class);
+		_resulutIntent.putExtra("Picture", "cakes");
 		_oldLocation = new HashMap<String, String>();
 		_inputButton = (Button)findViewById(R.id.inputButton);
 		//Detect form elements
