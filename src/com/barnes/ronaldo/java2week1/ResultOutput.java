@@ -11,6 +11,8 @@ package com.barnes.ronaldo.java2week1;
 
 import java.util.HashMap;
 
+
+import com.rbarnes.lib.FileInterface;
 import com.rbarnes.lib.WebInterface;
 
 import android.app.Activity;
@@ -23,12 +25,14 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 public class ResultOutput extends Activity implements OnClickListener{
 
 	
 	Context _context;
-	Boolean _connected = false;
+	HashMap<String, String> _resultValues;
 	String _titleStr;
 	String _addressStr;
 	String _cityStr;
@@ -45,9 +49,21 @@ public class ResultOutput extends Activity implements OnClickListener{
 		setContentView(R.layout.result);
 		Button callButton = (Button)findViewById(R.id.callButton);
 		Button mapButton = (Button)findViewById(R.id.mapButton);
-		_phoneStr = "tel:"+"(253)507-8911";
-		_mapCoord = "geo:" +"47.609671,-122.34218" + "?z=100";
-		_connected = WebInterface.getConnectionStatus(_context);
+		Boolean connected = WebInterface.getConnectionStatus(_context);
+		_resultValues = getOldLocation();
+		if (!connected && _resultValues == null){
+			//No Internet or saved files found
+		}else{
+			//Display results
+			displayResults();
+		}
+		
+		
+		
+		
+		
+		
+		//Detect Button CLick
 		callButton.setOnClickListener(this);
 		mapButton.setOnClickListener(this);
 		
@@ -77,4 +93,48 @@ public class ResultOutput extends Activity implements OnClickListener{
 		break;
 		}
 	}
+	
+	@SuppressWarnings("unchecked")
+	private HashMap<String, String> getOldLocation(){
+		Object stored = null;
+		stored = FileInterface.readObjectFile(_context, "oldLocation", false);
+		HashMap<String, String> oldLocation;
+		if(stored == null){
+			Log.i("OLD LOCATION", "NO OLD LOCATION FILE FOUND");
+			oldLocation = null;
+		}else{
+			oldLocation = (HashMap<String, String>) stored;
+		}
+		return oldLocation;
+	}
+	//Display results
+		private void displayResults(){
+			ImageView resultImageView = (ImageView)findViewById(R.id.resultImageView);
+			TextView tempTitle = (TextView)findViewById(R.id.titleValue);
+			TextView tempAddress = (TextView)findViewById(R.id.addressValue);
+			TextView tempCity = (TextView)findViewById(R.id.cityValue);
+			TextView tempState = (TextView)findViewById(R.id.stateValue);
+			//TextView tempPhone = (TextView)findViewById(R.id.phoneValue);
+			tempTitle.setText(_resultValues.get("Title").toString());
+			tempAddress.setText(_resultValues.get("Address").toString());
+			tempCity.setText(_resultValues.get("City").toString());
+			tempState.setText(_resultValues.get("State").toString());
+			_phoneStr = "tel:" + (_resultValues.get("Phone").toString());
+			_mapCoord = "geo:" + (_resultValues.get("Coords").toString() + "?z=50");
+			
+			String imageText = _resultValues.get("Picture").toString();
+			
+			if(imageText == "cookies"){
+				resultImageView.setImageResource(R.drawable.cookies);	
+			}else if(imageText == "candy"){
+				resultImageView.setImageResource(R.drawable.candy);
+			}else if(imageText == "pies"){
+				resultImageView.setImageResource(R.drawable.pies);	
+			}else if(imageText == "cakes"){
+				resultImageView.setImageResource(R.drawable.cakes);
+			}
+		}
+	
 }
+
+

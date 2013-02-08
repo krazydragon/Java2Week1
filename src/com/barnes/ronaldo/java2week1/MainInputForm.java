@@ -63,6 +63,7 @@ public class MainInputForm extends Activity implements OnClickListener {
 	Button _inputButton;
 	int _buttonId;
 	Intent _resulutIntent;
+	String _picture;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -147,12 +148,14 @@ public class MainInputForm extends Activity implements OnClickListener {
 						_oldLocation.put("State", location.getString("State"));
 						_oldLocation.put("Phone", location.getString("Phone"));
 						_oldLocation.put("Coords", location.getString("Latitude")+","+location.getString("Longitude"));
+						_oldLocation.put("Picture", _picture);
+						
 						
 						//Save File
 						FileInterface.storeObjectFile(_context, "oldLocation", _oldLocation, false);
 						//Show data
 						//Add Location Display
-						//displayResults();
+						displayResults();
 					}else{
 						_toast = Toast.makeText(_context, "Something went wrong" , Toast.LENGTH_SHORT);
 						_toast.show();
@@ -184,15 +187,19 @@ public class MainInputForm extends Activity implements OnClickListener {
 		//Change image when button is pressed	
 		case R.id.cookieButton:
 			dessertView.setImageResource(R.drawable.cookies);
+			_picture = "cookies";
 			break;
 		case R.id.pieButton:
 			dessertView.setImageResource(R.drawable.pies);
+			_picture = "pies";
 			break;
 		case R.id.cakeButton:
 			dessertView.setImageResource(R.drawable.cakes);
+			_picture = "cakes";
 			break;
 		case R.id.candyButton:
 			dessertView.setImageResource(R.drawable.candy);
+			_picture = "candy";
 			break;
 			
 		}

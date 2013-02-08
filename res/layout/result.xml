@@ -24,7 +24,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <ImageView
-            android:id="@+id/imageView1"
+            android:id="@+id/resultImageView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
