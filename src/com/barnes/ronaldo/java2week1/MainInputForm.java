@@ -148,7 +148,7 @@ public class MainInputForm extends Activity implements OnClickListener {
 						_oldLocation.put("State", location.getString("State"));
 						_oldLocation.put("Phone", location.getString("Phone"));
 						_oldLocation.put("Coords", location.getString("Latitude")+","+location.getString("Longitude"));
-						_oldLocation.put("Picture", _picture);
+						
 						
 						
 						//Save File
@@ -187,19 +187,19 @@ public class MainInputForm extends Activity implements OnClickListener {
 		//Change image when button is pressed	
 		case R.id.cookieButton:
 			dessertView.setImageResource(R.drawable.cookies);
-			_picture = "cookies";
+			_resulutIntent.putExtra("Picture", "cakes");
 			break;
 		case R.id.pieButton:
 			dessertView.setImageResource(R.drawable.pies);
-			_picture = "pies";
+			_resulutIntent.putExtra("Picture", "pies");
 			break;
 		case R.id.cakeButton:
 			dessertView.setImageResource(R.drawable.cakes);
-			_picture = "cakes";
+			_resulutIntent.putExtra("Picture", "cakes");
 			break;
 		case R.id.candyButton:
 			dessertView.setImageResource(R.drawable.candy);
-			_picture = "candy";
+			_resulutIntent.putExtra("Picture", "candy");
 			break;
 			
 		}

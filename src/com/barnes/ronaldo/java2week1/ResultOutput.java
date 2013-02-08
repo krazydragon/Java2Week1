@@ -114,7 +114,11 @@ public class ResultOutput extends Activity implements OnClickListener{
 			TextView tempAddress = (TextView)findViewById(R.id.addressValue);
 			TextView tempCity = (TextView)findViewById(R.id.cityValue);
 			TextView tempState = (TextView)findViewById(R.id.stateValue);
-			//TextView tempPhone = (TextView)findViewById(R.id.phoneValue);
+			Bundle resultIntent = getIntent().getExtras();
+			String imageText = resultIntent.getString("Picture");
+			
+			
+			
 			tempTitle.setText(_resultValues.get("Title").toString());
 			tempAddress.setText(_resultValues.get("Address").toString());
 			tempCity.setText(_resultValues.get("City").toString());
@@ -122,7 +126,7 @@ public class ResultOutput extends Activity implements OnClickListener{
 			_phoneStr = "tel:" + (_resultValues.get("Phone").toString());
 			_mapCoord = "geo:" + (_resultValues.get("Coords").toString() + "?z=50");
 			
-			String imageText = _resultValues.get("Picture").toString();
+			
 			
 			if(imageText == "cookies"){
 				resultImageView.setImageResource(R.drawable.cookies);	
